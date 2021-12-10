@@ -1,4 +1,4 @@
-package com.yourcodereview.java01.eugenet1024.api.validation;
+package com.yourcodereview.java01.eugenet1024.api.requestValidation;
 
 public class ValidationError {
 
