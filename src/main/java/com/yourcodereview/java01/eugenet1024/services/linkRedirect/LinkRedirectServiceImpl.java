@@ -30,7 +30,15 @@ public class LinkRedirectServiceImpl implements LinkRedirectService {
 
         String originalUrl;
         try {
-            originalUrl = getOriginalUrlById(id);
+            ShortLinkEntity shortLinkEntity =
+                shortLinkRepository.findById(id)
+                    .orElseThrow(() -> new EntityNotFoundException("ShortLinkEntity not found by id = " + id));
+
+            originalUrl = shortLinkEntity.getOriginalUrl();
+
+            long countOfRequests = shortLinkEntity.getCountOfRequests();
+            shortLinkEntity.setCountOfRequests(++countOfRequests);
+            shortLinkRepository.save(shortLinkEntity);
 
         } catch (EntityNotFoundException e) {
             LOGGER.error(e.getMessage());
@@ -38,13 +46,5 @@ public class LinkRedirectServiceImpl implements LinkRedirectService {
         }
 
         return originalUrl;
-    }
-
-    private String getOriginalUrlById(Integer id) {
-        ShortLinkEntity shortLinkEntity =
-            shortLinkRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("ShortLinkEntity not found by id = " + id));
-
-        return shortLinkEntity.getOriginalUrl();
     }
 }
