@@ -1,6 +1,6 @@
 package com.yourcodereview.java01.eugenet1024.api.linkRedirect;
 
-import com.yourcodereview.java01.eugenet1024.service.linkRedirect.LinkRedirectService;
+import com.yourcodereview.java01.eugenet1024.services.linkRedirect.LinkRedirectService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

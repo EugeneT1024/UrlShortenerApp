@@ -1,6 +1,6 @@
 package com.yourcodereview.java01.eugenet1024.api.statistics;
 
-import com.yourcodereview.java01.eugenet1024.service.statistics.StatisticsService;
+import com.yourcodereview.java01.eugenet1024.services.statistics.StatisticsService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

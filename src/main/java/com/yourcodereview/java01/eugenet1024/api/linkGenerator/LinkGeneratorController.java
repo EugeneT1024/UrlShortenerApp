@@ -1,6 +1,6 @@
 package com.yourcodereview.java01.eugenet1024.api.linkGenerator;
 
-import com.yourcodereview.java01.eugenet1024.service.linkGenerator.LinkGeneratorService;
+import com.yourcodereview.java01.eugenet1024.services.linkGenerator.LinkGeneratorService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
