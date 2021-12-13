@@ -17,6 +17,7 @@ import javax.validation.Valid;
 public class LinkGeneratorController {
 
     public static final String GENERATE_PATH = "/generate";
+    public static final String SHORT_LINKS_PATH = "/l/";
     public static final String MESSAGE_500 = "Unexpected Error. Please contact the application developers";
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -31,7 +32,7 @@ public class LinkGeneratorController {
     public ResponseEntity<GenerateLinkResponse> generateShortLink(@Valid @RequestBody GenerateLinkRequest request) {
 
         try {
-            GenerateLinkResponse responseBody = linkGeneratorService.generateLink(request);
+            GenerateLinkResponse responseBody = linkGeneratorService.generateLink(SHORT_LINKS_PATH, request);
             return new ResponseEntity<>(responseBody, HttpStatus.CREATED);
 
         } catch (Exception e) {

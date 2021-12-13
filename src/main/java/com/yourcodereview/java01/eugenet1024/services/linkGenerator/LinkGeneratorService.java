@@ -5,6 +5,6 @@ import com.yourcodereview.java01.eugenet1024.api.linkGenerator.GenerateLinkRespo
 
 public interface LinkGeneratorService {
 
-    GenerateLinkResponse generateLink(GenerateLinkRequest request);
+    GenerateLinkResponse generateLink(String shortLinksPath, GenerateLinkRequest request);
 
 }

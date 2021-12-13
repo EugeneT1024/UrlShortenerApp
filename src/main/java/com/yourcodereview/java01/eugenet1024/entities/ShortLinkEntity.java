@@ -1,14 +1,15 @@
 package com.yourcodereview.java01.eugenet1024.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import com.yourcodereview.java01.eugenet1024.api.linkGenerator.GenerateLinkRequest;
+
+import javax.persistence.*;
 
 @Entity
-public class ShortLink {
+public class ShortLinkEntity {
 
     @Id()
-    Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Integer id;
 
     @Column(nullable = false)
     String originalUrl;
@@ -16,11 +17,19 @@ public class ShortLink {
     @Column(nullable = false)
     Long countOfRequests;
 
-    public Long getId() {
+    public ShortLinkEntity() {
+    }
+
+    public ShortLinkEntity(GenerateLinkRequest request) {
+        this.originalUrl = request.getOriginal();
+        this.countOfRequests = 0L;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
