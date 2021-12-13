@@ -1,9 +1,9 @@
-package com.yourcodereview.java01.eugenet1024.services.linkGenerator;
+package com.yourcodereview.java01.eugenet1024.services;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public class ShotLinkGeneratorImpl implements ShotLinkGenerator {
+public class ShortLinkUtilsImpl implements ShortLinkUtils {
 
     private static final String ALPHABET =
         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
