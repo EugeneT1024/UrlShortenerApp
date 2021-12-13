@@ -1,5 +1,7 @@
 package com.yourcodereview.java01.eugenet1024.api.statistics;
 
+import com.yourcodereview.java01.eugenet1024.entities.ShortLinkEntity;
+
 public class ShortLinkStatisticsDto {
 
     private String errorMessage;
@@ -8,6 +10,16 @@ public class ShortLinkStatisticsDto {
     private String original;
     private long rank;
     private long count;
+
+    public ShortLinkStatisticsDto() {
+    }
+
+    public ShortLinkStatisticsDto(ShortLinkEntity entity) {
+        this.link = "stub";
+        this.original = entity.getOriginalUrl();
+        this.rank = 0L;
+        this.count = entity.getCountOfRequests();
+    }
 
     public String getErrorMessage() {
         return errorMessage;

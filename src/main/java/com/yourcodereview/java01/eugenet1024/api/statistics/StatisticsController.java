@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class StatisticsController {
 
-    public static final String STATS_PATH = "/stats/";
-    public static final String MESSAGE_500 = "Unexpected Error. Please contact the application developers";
-    public static final Logger LOGGER = LogManager.getLogger();
+    private static final String STATS_PATH = "/stats/";
+    private static final String MESSAGE_500 = "Unexpected Error. Please contact the application developers";
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private final StatisticsService statisticsService;
 

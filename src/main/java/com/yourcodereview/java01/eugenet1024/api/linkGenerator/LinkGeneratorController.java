@@ -16,10 +16,10 @@ import javax.validation.Valid;
 @RestController
 public class LinkGeneratorController {
 
-    public static final String GENERATE_PATH = "/generate";
-    public static final String SHORT_LINKS_PATH = "/l/";
-    public static final String MESSAGE_500 = "Unexpected Error. Please contact the application developers";
-    public static final Logger LOGGER = LogManager.getLogger();
+    private static final String GENERATE_PATH = "/generate";
+    private static final String SHORT_LINKS_PATH = "/l/";
+    private static final String MESSAGE_500 = "Unexpected Error. Please contact the application developers";
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private final LinkGeneratorService linkGeneratorService;
 

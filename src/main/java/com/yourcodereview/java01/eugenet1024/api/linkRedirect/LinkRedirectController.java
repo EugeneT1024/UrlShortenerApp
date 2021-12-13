@@ -18,9 +18,9 @@ import java.net.URI;
 @RestController
 public class LinkRedirectController {
 
-    public static final String REDIRECT_PATH = "/l/";
-    public static final String MESSAGE_500 = "Unexpected Error. Please contact the application developers";
-    public static final Logger LOGGER = LogManager.getLogger();
+    private static final String REDIRECT_PATH = "/l/";
+    private static final String MESSAGE_500 = "Unexpected Error. Please contact the application developers";
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private final LinkRedirectService linkRedirectService;
 
