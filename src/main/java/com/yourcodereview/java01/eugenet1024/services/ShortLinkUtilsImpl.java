@@ -14,7 +14,7 @@ public class ShortLinkUtilsImpl implements ShortLinkUtils {
             throw new IllegalArgumentException("id of Entity must be > 0");
         }
 
-        id = id -1;
+        id = id - 1;
         StringBuilder stringBuilder = new StringBuilder();
         do {
             stringBuilder.append(ALPHABET.charAt(id % 62));
@@ -39,6 +39,6 @@ public class ShortLinkUtilsImpl implements ShortLinkUtils {
                 id = id * 62 + shortLink.charAt(i) - '0' + 52;
             }
         }
-        return id;
+        return id + 1; //Id записей в БД начинаются с 1
     }
 }

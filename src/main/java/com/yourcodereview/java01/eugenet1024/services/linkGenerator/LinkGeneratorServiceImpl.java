@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class LinkGeneratorServiceImpl implements LinkGeneratorService {
 
-    ShortLinkUtils shortLinkUtils;
-    ShortLinkRepository shortLinkRepository;
+    private final ShortLinkUtils shortLinkUtils;
+    private final ShortLinkRepository shortLinkRepository;
 
     @Autowired
     public LinkGeneratorServiceImpl(ShortLinkUtils shortLinkUtils, ShortLinkRepository shortLinkRepository) {
@@ -22,7 +22,7 @@ public class LinkGeneratorServiceImpl implements LinkGeneratorService {
 
     @Override
     public GenerateLinkResponse generateLink(String shortLinksPath, GenerateLinkRequest request) {
-        ShortLinkEntity shortLinkEntity = shortLinkRepository.save(new ShortLinkEntity(request));
+        ShortLinkEntity shortLinkEntity = shortLinkRepository.save(new ShortLinkEntity(request.getOriginal()));
         String shortLink = shortLinkUtils.idToShortLink(shortLinkEntity.getId());
         return new GenerateLinkResponse(shortLinksPath + shortLink);
     }

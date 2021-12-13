@@ -20,8 +20,8 @@ public class ShortLinkEntity {
     public ShortLinkEntity() {
     }
 
-    public ShortLinkEntity(GenerateLinkRequest request) {
-        this.originalUrl = request.getOriginal();
+    public ShortLinkEntity(String originalUrl) {
+        this.originalUrl = originalUrl;
         this.countOfRequests = 0L;
     }
 

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.persistence.EntityNotFoundException;
 import java.net.URI;
 
 @RestController
@@ -36,6 +37,10 @@ public class LinkRedirectController {
             HttpHeaders headers = new HttpHeaders();
             headers.setLocation(URI.create(originalURL));
             return new ResponseEntity<>(headers, HttpStatus.MOVED_PERMANENTLY);
+
+        } catch (EntityNotFoundException e) {
+            LOGGER.error(e.getMessage());
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
