@@ -8,18 +8,8 @@ public class ShortLinkStatisticsDto {
 
     private String link;
     private String original;
-    private long rank;
-    private long count;
-
-    public ShortLinkStatisticsDto() {
-    }
-
-    public ShortLinkStatisticsDto(ShortLinkEntity entity) {
-        this.link = "stub";
-        this.original = entity.getOriginalUrl();
-        this.rank = 0L;
-        this.count = entity.getCountOfRequests();
-    }
+    private Long rank;
+    private Long count;
 
     public String getErrorMessage() {
         return errorMessage;
@@ -45,19 +35,19 @@ public class ShortLinkStatisticsDto {
         this.original = original;
     }
 
-    public long getRank() {
+    public Long getRank() {
         return rank;
     }
 
-    public void setRank(long rank) {
+    public void setRank(Long rank) {
         this.rank = rank;
     }
 
-    public long getCount() {
+    public Long getCount() {
         return count;
     }
 
-    public void setCount(long count) {
+    public void setCount(Long count) {
         this.count = count;
     }
 }

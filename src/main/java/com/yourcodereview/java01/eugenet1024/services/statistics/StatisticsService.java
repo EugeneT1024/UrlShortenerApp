@@ -7,5 +7,5 @@ public interface StatisticsService {
 
     ShortLinkStatisticsDto getStatisticsForShortLink(String shortLink);
 
-    OverallStatisticsDto getOverallStatistics();
+    OverallStatisticsDto getOverallStatistics(int pageNumber, int countOfItems);
 }

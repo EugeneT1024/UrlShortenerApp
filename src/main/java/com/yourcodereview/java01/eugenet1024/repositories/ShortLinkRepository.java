@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ShortLinkRepository extends PagingAndSortingRepository<ShortLinkEntity, Integer> {
 
+    Long countByCountOfRequestsGreaterThan(Long countOfRequests);
+
 }

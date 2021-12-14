@@ -6,15 +6,16 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.persistence.EntityNotFoundException;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 @RestController
 public class StatisticsController {
 
-    private static final String STATS_PATH = "/stats/";
+    private static final String STATS_PATH = "/stats";
     private static final String MESSAGE_500 = "Unexpected Error. Please contact the application developers";
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -25,12 +26,18 @@ public class StatisticsController {
         this.statisticsService = statisticsService;
     }
 
-    @RequestMapping(value = STATS_PATH + "{shortLink}", method = RequestMethod.GET)
+    @RequestMapping(value = STATS_PATH + "/{shortLink}", method = RequestMethod.GET)
     public ResponseEntity<ShortLinkStatisticsDto> getStatisticsForShortLink(@PathVariable String shortLink) {
 
         try {
             ShortLinkStatisticsDto responseBody = statisticsService.getStatisticsForShortLink(shortLink);
             return new ResponseEntity<>(responseBody, HttpStatus.OK);
+
+        } catch (EntityNotFoundException e) {
+            LOGGER.error(e.getMessage());
+            ShortLinkStatisticsDto responseBody = new ShortLinkStatisticsDto();
+            responseBody.setErrorMessage(e.getMessage());
+            return new ResponseEntity<>(responseBody, HttpStatus.NOT_FOUND);
 
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
@@ -42,11 +49,20 @@ public class StatisticsController {
     }
 
     @RequestMapping(value = STATS_PATH, method = RequestMethod.GET)
-    public ResponseEntity<OverallStatisticsDto> getOverallStatistics() {
+    public ResponseEntity<OverallStatisticsDto> getOverallStatistics(
+        @Min(value = 0, message = "Page number must be >= 0") @RequestParam int page,
+        @Min(value = 1, message = "Count of items per page must be > 0")
+        @Max(value = 100, message = "Count of items must be <= 100") @RequestParam int count) {
 
         try {
-            OverallStatisticsDto responseBody = statisticsService.getOverallStatistics();
+            OverallStatisticsDto responseBody = statisticsService.getOverallStatistics(page, count);
             return new ResponseEntity<>(responseBody, HttpStatus.OK);
+
+        } catch (EntityNotFoundException e) {
+            LOGGER.error(e.getMessage());
+            OverallStatisticsDto responseBody = new OverallStatisticsDto();
+            responseBody.setErrorMessage(e.getMessage());
+            return new ResponseEntity<>(responseBody, HttpStatus.BAD_REQUEST);
 
         } catch (Exception e) {
             LOGGER.error(e.getMessage());

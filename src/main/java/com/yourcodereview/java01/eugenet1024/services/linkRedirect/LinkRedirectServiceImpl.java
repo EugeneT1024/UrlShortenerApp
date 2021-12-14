@@ -13,7 +13,7 @@ import javax.persistence.EntityNotFoundException;
 @Service
 public class LinkRedirectServiceImpl implements LinkRedirectService {
 
-    public static final Logger LOGGER = LogManager.getLogger();
+    private static final Logger LOGGER = LogManager.getLogger();
 
     private final ShortLinkUtils shortLinkUtils;
     private final ShortLinkRepository shortLinkRepository;
